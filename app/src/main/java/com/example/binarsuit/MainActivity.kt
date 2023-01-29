@@ -1,7 +1,5 @@
 package com.example.binarsuit
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,164 +12,177 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        val rockButton = findViewById<ImageView>(R.id.rock_btn)
-        val rockButton1 = findViewById<ImageView>(R.id.rock1_btn)
+        val rockButtonPlayer = findViewById<ImageView>(R.id.img_player_rock)
+        val rockButtonCom = findViewById<ImageView>(R.id.img_com_rock)
 
-        val paperButton = findViewById<ImageView>(R.id.paper_btn)
-        val paperButton1 = findViewById<ImageView>(R.id.paper1_btn)
+        val paperButtonPlayer = findViewById<ImageView>(R.id.img_player_paper)
+        val paperButtonCom = findViewById<ImageView>(R.id.img_com_paper)
 
-        val scissorButton = findViewById<ImageView>(R.id.scissor_btn)
-        val scissorButton1 = findViewById<ImageView>(R.id.scissor1_btn)
+        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_player_scissor)
+        val scissorButtonCom = findViewById<ImageView>(R.id.img_com_scissor)
 
-        val restartButton = findViewById<ImageView>(R.id.restart_btn)
 
-        val showText = findViewById<TextView>(R.id.vs)
-
-        //Rock Button
-        rockButton.setOnClickListener{
-            rockButton.setBackgroundColor(Color.CYAN)
+        //Rock ImageView
+        rockButtonPlayer.setOnClickListener{
+            rockButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose ROCK")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButton1.setBackgroundColor(Color.CYAN)
+                    rockButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "DRAW"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.BLUE)
-                    showText.setTextColor(Color.WHITE)
+                    textDraw()
+
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: DRAW")
                 }
                 2 -> {
-                    paperButton1.setBackgroundColor(Color.CYAN)
+                    paperButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Computer WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textComWin()
+
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                 }
                 else -> {
-                    scissorButton1.setBackgroundColor(Color.CYAN)
+                    scissorButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Player WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textPlayerWin()
+
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: PLAYER WIN")
                 }
             }
-            rockButton.isClickable = false
-            paperButton.isClickable = false
-            scissorButton.isClickable = false
+            notClickableBtn()
         }
 
-        //Paper Button
-        paperButton.setOnClickListener{
-            paperButton.setBackgroundColor(Color.CYAN)
+        //Paper ImageView
+        paperButtonPlayer.setOnClickListener{
+            paperButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose PAPER")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButton1.setBackgroundColor(Color.CYAN)
+                    rockButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Player WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textPlayerWin()
+
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: PLAYER WIN")
                 }
                 2 -> {
-                    paperButton1.setBackgroundColor(Color.CYAN)
+                    paperButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "DRAW"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.BLUE)
-                    showText.setTextColor(Color.WHITE)
+                    textDraw()
+
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: DRAW")
                 }
                 else -> {
-                    scissorButton1.setBackgroundColor(Color.CYAN)
+                    scissorButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Computer WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textComWin()
+
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                 }
             }
-            rockButton.isClickable = false
-            paperButton.isClickable = false
-            scissorButton.isClickable = false
+            notClickableBtn()
         }
 
-        //Scissor Button
-        scissorButton.setOnClickListener{
-            scissorButton.setBackgroundColor(Color.CYAN)
+        //Scissor ImageView
+        scissorButtonPlayer.setOnClickListener{
+            scissorButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose SCISSOR")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButton1.setBackgroundColor(Color.CYAN)
+                    rockButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Computer WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textComWin()
+
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                 }
                 2 -> {
-                    paperButton1.setBackgroundColor(Color.CYAN)
+                    paperButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "Player WIN"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.GREEN)
-                    showText.setTextColor(Color.WHITE)
+                    textPlayerWin()
+
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: PLAYER WIN")
                 }
                 else -> {
-                    scissorButton1.setBackgroundColor(Color.CYAN)
+                    scissorButtonCom.setBackgroundColor(Color.CYAN)
 
-                    showText.text = "DRAW"
-                    showText.textSize = 20.0f
-                    showText.setBackgroundColor(Color.BLUE)
-                    showText.setTextColor(Color.WHITE)
+                    textDraw()
+
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: DRAW")
                 }
             }
-            rockButton.isClickable = false
-            paperButton.isClickable = false
-            scissorButton.isClickable = false
+            notClickableBtn()
         }
 
-        //Restart Button
-        restartButton.setOnClickListener{
-            restartApp()
-        }
+        //Restart ImageView
+        restartApp()
 
     }
 
     //Restart function, finish the activity and startActivity again
     private fun restartApp(){
-        finish()
-        startActivity(intent)
+        val restartButton = findViewById<ImageView>(R.id.img_restart)
+
+        restartButton.setOnClickListener {
+            finish()
+            startActivity(intent)
+        }
+
+    }
+
+    private fun notClickableBtn(){
+        val rockButtonPlayer = findViewById<ImageView>(R.id.img_player_rock)
+        val paperButtonPlayer = findViewById<ImageView>(R.id.img_player_paper)
+        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_player_scissor)
+
+        rockButtonPlayer.isClickable = false
+        paperButtonPlayer.isClickable = false
+        scissorButtonPlayer.isClickable = false
+    }
+
+    private fun textPlayerWin(){
+        val showText = findViewById<TextView>(R.id.tx_vs)
+
+        showText.text = "Player WIN"
+        showText.textSize = 20.0f
+        showText.setBackgroundColor(Color.GREEN)
+        showText.setTextColor(Color.WHITE)
+    }
+
+    private fun textComWin(){
+        val showText = findViewById<TextView>(R.id.tx_vs)
+
+        showText.text = "Computer WIN"
+        showText.textSize = 20.0f
+        showText.setBackgroundColor(Color.GREEN)
+        showText.setTextColor(Color.WHITE)
+    }
+
+    private fun textDraw(){
+        val showText = findViewById<TextView>(R.id.tx_vs)
+
+        showText.text = "DRAW"
+        showText.textSize = 20.0f
+        showText.setBackgroundColor(Color.GREEN)
+        showText.setTextColor(Color.WHITE)
     }
 }

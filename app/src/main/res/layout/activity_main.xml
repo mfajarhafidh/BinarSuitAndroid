@@ -7,65 +7,61 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/opensans_bolditalic"
         android:gravity="center"
-        android:text="Kertas"
+        android:text="@string/paper"
         android:textColor="#FF9800"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
         android:gravity="center"
-        android:text="Batu"
+        android:text="@string/rock"
         android:textColor="#9C27B0"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
         android:gravity="center"
-        android:text="Gunting"
+        android:text="@string/scissor"
         android:textColor="#4CAF50"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-    <TextView
-        android:id="@+id/vs"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tx_vs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
-        android:text="VS"
+        android:text="@string/vs"
         android:textColor="#FF0000"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <ImageView
-        android:id="@+id/restart_btn"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_restart"
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,37 +79,37 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
-            android:text="Player"
+            android:text="@string/player"
             android:textColor="#00BCD4"
             android:textSize="25sp" />
 
-        <ImageView
-            android:id="@+id/rock_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_player_rock"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="batu"
-            android:src="@drawable/batu" />
+            android:contentDescription="@string/rock"
+            app:srcCompat="@drawable/batu" />
 
-        <ImageView
-            android:id="@+id/paper_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_player_paper"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="kertas"
-            android:src="@drawable/kertas" />
+            android:contentDescription="@string/paper"
+            app:srcCompat="@drawable/kertas" />
 
-        <ImageView
-            android:id="@+id/scissor_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_player_scissor"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:contentDescription="gunting"
-            android:src="@drawable/gunting" />
+            android:contentDescription="@string/scissor"
+            app:srcCompat="@drawable/gunting" />
 
     </LinearLayout>
 
@@ -128,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="10dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
@@ -136,29 +132,29 @@
             android:textColor="#00BCD4"
             android:textSize="25sp" />
 
-        <ImageView
-            android:id="@+id/rock1_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_com_rock"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
             android:contentDescription="batu"
-            android:src="@drawable/batu" />
+            app:srcCompat="@drawable/batu" />
 
-        <ImageView
-            android:id="@+id/paper1_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_com_paper"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
             android:contentDescription="kertas"
-            android:src="@drawable/kertas" />
+            app:srcCompat="@drawable/kertas" />
 
-        <ImageView
-            android:id="@+id/scissor1_btn"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_com_scissor"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
             android:contentDescription="gunting"
-            android:src="@drawable/gunting" />
+            app:srcCompat="@drawable/gunting" />
 
     </LinearLayout>
 
