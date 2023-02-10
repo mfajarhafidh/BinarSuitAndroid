@@ -9,132 +9,140 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.binarsuit.activity.ThirdActivity
 import com.example.binarsuit.databinding.ActivityMainBinding
+import com.example.binarsuit.utilities.showToast
 
 class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val rockButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_rock)
-        val rockButtonCom = findViewById<ImageView>(R.id.img_pvc_com_rock)
+        val username = intent.getStringExtra("username")
 
-        val paperButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_paper)
-        val paperButtonCom = findViewById<ImageView>(R.id.img_pvc_com_paper)
-
-        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_scissor)
-        val scissorButtonCom = findViewById<ImageView>(R.id.img_pvc_com_scissor)
-
+        binding.tvPvcPlayer.text = "$username"
 
         //Rock ImageView
-        rockButtonPlayer.setOnClickListener {
-            rockButtonPlayer.setBackgroundColor(Color.CYAN)
-            Log.i("Main Activity", "Player choose ROCK")
+        binding.imgPvcPlayerRock.setOnClickListener {
+            binding.imgPvcPlayerRock.setBackgroundColor(Color.CYAN)
+            Log.i("Main Activity", "$username choose ROCK")
+            showToast("$username Memilih Batu")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
                     textDraw()
 
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: DRAW")
+                    showToast("CPU Memilih Batu")
                 }
                 2 -> {
-                    paperButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
 
                     textComWin()
 
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
+                    showToast("CPU Memilih Kertas")
                 }
                 else -> {
-                    scissorButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
 
                     textPlayerWin()
 
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: PLAYER WIN")
+                    showToast("CPU Memilih Gunting")
                 }
             }
             notClickableBtn()
         }
 
         //Paper ImageView
-        paperButtonPlayer.setOnClickListener {
-            paperButtonPlayer.setBackgroundColor(Color.CYAN)
-            Log.i("Main Activity", "Player choose PAPER")
+        binding.imgPvcPlayerPaper.setOnClickListener {
+            binding.imgPvcPlayerPaper.setBackgroundColor(Color.CYAN)
+            Log.i("Main Activity", "$username choose PAPER")
+            showToast("$username Memilih Kertas")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
                     textPlayerWin()
 
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: PLAYER WIN")
+                    showToast("CPU Memilih Batu")
                 }
                 2 -> {
-                    paperButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
 
                     textDraw()
 
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: DRAW")
+                    showToast("CPU Memilih Kertas")
                 }
                 else -> {
-                    scissorButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
 
                     textComWin()
 
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
+                    showToast("CPU Memilih Gunting")
                 }
             }
             notClickableBtn()
         }
 
         //Scissor ImageView
-        scissorButtonPlayer.setOnClickListener {
-            scissorButtonPlayer.setBackgroundColor(Color.CYAN)
-            Log.i("Main Activity", "Player choose SCISSOR")
+        binding.imgPvcPlayerScissor.setOnClickListener {
+            binding.imgPvcPlayerScissor.setBackgroundColor(Color.CYAN)
+            Log.i("Main Activity", "$username choose SCISSOR")
+            showToast("$username Memilih Gunting")
 
             when ((1..3).random()) {
                 1 -> {
-                    rockButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
                     textComWin()
 
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
+                    showToast("CPU Memilih Batu")
                 }
                 2 -> {
-                    paperButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
 
                     textPlayerWin()
 
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: PLAYER WIN")
+                    showToast("CPU Memilih Kertas")
                 }
                 else -> {
-                    scissorButtonCom.setBackgroundColor(Color.CYAN)
+                    binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
 
                     textDraw()
 
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: DRAW")
+                    showToast("CPU Memilih Gunting")
                 }
             }
             notClickableBtn()
@@ -143,6 +151,7 @@ class MainActivity : AppCompatActivity() {
         //Restart ImageView
         restartApp()
 
+        //Closing Main Activity to Third Activity (Main Menu)
         binding.imgPvcClose.setOnClickListener {
             closeActivity()
         }
@@ -151,54 +160,43 @@ class MainActivity : AppCompatActivity() {
 
     //Restart function, finish the activity and startActivity again
     private fun restartApp() {
-        val restartButton = findViewById<ImageView>(R.id.img_pvc_restart)
-
-        restartButton.setOnClickListener {
+        binding.imgPvcRestart.setOnClickListener {
             finish()
             startActivity(intent)
         }
-
     }
 
     private fun notClickableBtn() {
-        val rockButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_rock)
-        val paperButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_paper)
-        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_scissor)
-
-        rockButtonPlayer.isClickable = false
-        paperButtonPlayer.isClickable = false
-        scissorButtonPlayer.isClickable = false
+        binding.imgPvcPlayerRock.isClickable = false
+        binding.imgPvcPlayerPaper.isClickable = false
+        binding.imgPvcPlayerScissor.isClickable = false
     }
 
     private fun textPlayerWin() {
-        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
-
-        showText.text = "Player WIN"
-        showText.textSize = 20.0f
-        showText.setBackgroundColor(Color.GREEN)
-        showText.setTextColor(Color.WHITE)
+        binding.tvPvcVs.text = "Player WIN"
+        binding.tvPvcVs.textSize = 20.0f
+        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
+        binding.tvPvcVs.setTextColor(Color.WHITE)
     }
 
     private fun textComWin() {
-        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
-
-        showText.text = "Computer WIN"
-        showText.textSize = 20.0f
-        showText.setBackgroundColor(Color.GREEN)
-        showText.setTextColor(Color.WHITE)
+        binding.tvPvcVs.text = "Computer WIN"
+        binding.tvPvcVs.textSize = 20.0f
+        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
+        binding.tvPvcVs.setTextColor(Color.WHITE)
     }
 
     private fun textDraw() {
-        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
-
-        showText.text = "DRAW"
-        showText.textSize = 20.0f
-        showText.setBackgroundColor(Color.GREEN)
-        showText.setTextColor(Color.WHITE)
+        binding.tvPvcVs.text = "DRAW"
+        binding.tvPvcVs.textSize = 20.0f
+        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
+        binding.tvPvcVs.setTextColor(Color.WHITE)
     }
 
     private fun closeActivity() {
+        val username = intent.getStringExtra("username")
         val intent = Intent(this, ThirdActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 }

@@ -45,12 +45,16 @@ class ThirdActivity : AppCompatActivity() {
     }
 
     private fun startMainActivity() {
+        val username = intent.getStringExtra("username")
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 
     private fun startPvpActivity() {
+        val username = intent.getStringExtra("username")
         val intent = Intent(this, PvpActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 }
