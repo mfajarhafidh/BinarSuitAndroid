@@ -1,29 +1,36 @@
 package com.example.binarsuit
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.binarsuit.activity.ThirdActivity
+import com.example.binarsuit.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        
-        val rockButtonPlayer = findViewById<ImageView>(R.id.img_player_rock)
-        val rockButtonCom = findViewById<ImageView>(R.id.img_com_rock)
+        setContentView(binding.root)
 
-        val paperButtonPlayer = findViewById<ImageView>(R.id.img_player_paper)
-        val paperButtonCom = findViewById<ImageView>(R.id.img_com_paper)
+        val rockButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_rock)
+        val rockButtonCom = findViewById<ImageView>(R.id.img_pvc_com_rock)
 
-        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_player_scissor)
-        val scissorButtonCom = findViewById<ImageView>(R.id.img_com_scissor)
+        val paperButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_paper)
+        val paperButtonCom = findViewById<ImageView>(R.id.img_pvc_com_paper)
+
+        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_scissor)
+        val scissorButtonCom = findViewById<ImageView>(R.id.img_pvc_com_scissor)
 
 
         //Rock ImageView
-        rockButtonPlayer.setOnClickListener{
+        rockButtonPlayer.setOnClickListener {
             rockButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose ROCK")
 
@@ -60,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Paper ImageView
-        paperButtonPlayer.setOnClickListener{
+        paperButtonPlayer.setOnClickListener {
             paperButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose PAPER")
 
@@ -97,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Scissor ImageView
-        scissorButtonPlayer.setOnClickListener{
+        scissorButtonPlayer.setOnClickListener {
             scissorButtonPlayer.setBackgroundColor(Color.CYAN)
             Log.i("Main Activity", "Player choose SCISSOR")
 
@@ -136,11 +143,15 @@ class MainActivity : AppCompatActivity() {
         //Restart ImageView
         restartApp()
 
+        binding.imgPvcClose.setOnClickListener {
+            closeActivity()
+        }
+
     }
 
     //Restart function, finish the activity and startActivity again
-    private fun restartApp(){
-        val restartButton = findViewById<ImageView>(R.id.img_restart)
+    private fun restartApp() {
+        val restartButton = findViewById<ImageView>(R.id.img_pvc_restart)
 
         restartButton.setOnClickListener {
             finish()
@@ -149,18 +160,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun notClickableBtn(){
-        val rockButtonPlayer = findViewById<ImageView>(R.id.img_player_rock)
-        val paperButtonPlayer = findViewById<ImageView>(R.id.img_player_paper)
-        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_player_scissor)
+    private fun notClickableBtn() {
+        val rockButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_rock)
+        val paperButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_paper)
+        val scissorButtonPlayer = findViewById<ImageView>(R.id.img_pvc_player_scissor)
 
         rockButtonPlayer.isClickable = false
         paperButtonPlayer.isClickable = false
         scissorButtonPlayer.isClickable = false
     }
 
-    private fun textPlayerWin(){
-        val showText = findViewById<TextView>(R.id.tx_vs)
+    private fun textPlayerWin() {
+        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
 
         showText.text = "Player WIN"
         showText.textSize = 20.0f
@@ -168,8 +179,8 @@ class MainActivity : AppCompatActivity() {
         showText.setTextColor(Color.WHITE)
     }
 
-    private fun textComWin(){
-        val showText = findViewById<TextView>(R.id.tx_vs)
+    private fun textComWin() {
+        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
 
         showText.text = "Computer WIN"
         showText.textSize = 20.0f
@@ -177,12 +188,17 @@ class MainActivity : AppCompatActivity() {
         showText.setTextColor(Color.WHITE)
     }
 
-    private fun textDraw(){
-        val showText = findViewById<TextView>(R.id.tx_vs)
+    private fun textDraw() {
+        val showText = findViewById<TextView>(R.id.tv_pvc_vs)
 
         showText.text = "DRAW"
         showText.textSize = 20.0f
         showText.setBackgroundColor(Color.GREEN)
         showText.setTextColor(Color.WHITE)
+    }
+
+    private fun closeActivity() {
+        val intent = Intent(this, ThirdActivity::class.java)
+        startActivity(intent)
     }
 }
