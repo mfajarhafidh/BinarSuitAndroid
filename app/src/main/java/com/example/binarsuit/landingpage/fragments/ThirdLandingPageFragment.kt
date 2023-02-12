@@ -1,6 +1,5 @@
-package com.example.binarsuit.fragments
+package com.example.binarsuit.landingpage.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.binarsuit.activity.ThirdActivity
-import com.example.binarsuit.databinding.FragmentThirdBinding
+import com.example.binarsuit.databinding.FragmentLandingPageThirdBinding
+import com.example.binarsuit.mainmenu.MainMenuActivity
+import com.example.binarsuit.utilities.intentTo
 
-class ThirdFragment : Fragment() {
+class ThirdLandingPageFragment : Fragment() {
 
-    private var _binding: FragmentThirdBinding? = null
-    private val binding: FragmentThirdBinding
+    private var _binding: FragmentLandingPageThirdBinding? = null
+    private val binding: FragmentLandingPageThirdBinding
         get() = _binding!!
 
     override fun onCreateView(
@@ -23,14 +23,14 @@ class ThirdFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentLandingPageThirdBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvUsername.addTextChangedListener(object : TextWatcher {
+        binding.etUsername.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
@@ -64,11 +64,9 @@ class ThirdFragment : Fragment() {
     }
 
     private fun startLogin() {
-        val username = binding.tvUsername.text.toString()
-        val intent = Intent(activity, ThirdActivity::class.java)
-        intent.putExtra("username", username)
-        startActivity(intent)
+        val username = binding.etUsername.text.toString()
+        context?.intentTo(MainMenuActivity::class.java) { intent ->
+            intent.putExtra("username", username)
+        }
     }
-
-
 }

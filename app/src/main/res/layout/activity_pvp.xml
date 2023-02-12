@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".game.PvcActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_pvc_1"
+        android:id="@+id/tv_pvp_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_pvc_2"
+        android:id="@+id/tv_pvp_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
@@ -32,10 +32,10 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pvc_1" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_pvp_1" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_pvc_3"
+        android:id="@+id/tv_pvp_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
@@ -44,11 +44,11 @@
         android:textColor="#9C27B0"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pvc_2" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_pvp_2" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_pvc_vs"
+        android:id="@+id/tv_pvp_vs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans_bolditalic"
@@ -56,28 +56,32 @@
         android:textColor="#FF0000"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/linear_pvc_com"
-        app:layout_constraintStart_toEndOf="@+id/linear_pvc_player"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pvc_3" />
+        app:layout_constraintEnd_toStartOf="@+id/linear_pvp_player_2"
+        app:layout_constraintStart_toEndOf="@+id/linear_pvp_player"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pvp_3" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_pvc_restart"
+        android:id="@+id/img_pvp_restart"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
         android:src="@drawable/refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_pvc_close"
+        android:id="@+id/img_pvp_close"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/close" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_pvc_player"
+        android:id="@+id/linear_pvp_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -88,6 +92,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_pvp_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
@@ -96,7 +101,7 @@
             android:textSize="25sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_player_rock"
+            android:id="@+id/img_pvp_player_rock"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -104,7 +109,7 @@
             app:srcCompat="@drawable/batu" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_player_paper"
+            android:id="@+id/img_pvp_player_paper"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -112,7 +117,7 @@
             app:srcCompat="@drawable/kertas" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_player_scissor"
+            android:id="@+id/img_pvp_player_scissor"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -122,7 +127,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_pvc_com"
+        android:id="@+id/linear_pvp_player_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
@@ -133,6 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_pvp_player_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_bold"
@@ -141,7 +147,7 @@
             android:textSize="25sp" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_com_rock"
+            android:id="@+id/img_pvp_player_2_rock"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -149,7 +155,7 @@
             app:srcCompat="@drawable/batu" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_com_paper"
+            android:id="@+id/img_pvp_player_2_paper"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -157,7 +163,7 @@
             app:srcCompat="@drawable/kertas" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_pvc_com_scissor"
+            android:id="@+id/img_pvp_player_2_scissor"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"

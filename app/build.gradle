@@ -49,4 +49,7 @@ dependencies {
 
     //image loader glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'
+
+    //dots slider view pager
+    implementation 'com.tbuonomo:dotsindicator:4.3'
 }

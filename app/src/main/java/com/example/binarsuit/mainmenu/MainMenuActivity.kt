@@ -1,25 +1,28 @@
-package com.example.binarsuit.activity
+package com.example.binarsuit.mainmenu
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.binarsuit.MainActivity
-import com.example.binarsuit.PvpActivity
+import com.example.binarsuit.game.PvcActivity
+import com.example.binarsuit.game.PvpActivity
 import com.example.binarsuit.R
-import com.example.binarsuit.databinding.ActivityThirdBinding
+import com.example.binarsuit.databinding.ActivityMenuMainBinding
+import com.example.binarsuit.utilities.intentTo
 import com.google.android.material.snackbar.Snackbar
 
-class ThirdActivity : AppCompatActivity() {
+class MainMenuActivity : AppCompatActivity() {
 
-    private val binding: ActivityThirdBinding by lazy {
-        ActivityThirdBinding.inflate(layoutInflater)
+    private val binding: ActivityMenuMainBinding by lazy {
+        ActivityMenuMainBinding.inflate(layoutInflater)
+    }
+
+    private val username: String by lazy {
+        intent.getStringExtra("username") ?: "unknown"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val username = intent.getStringExtra("username")
 
         if (username != null) {
             val snackbar =
@@ -34,7 +37,7 @@ class ThirdActivity : AppCompatActivity() {
         binding.tvPvc.text = "$username vs CPU"
 
         binding.imgPvc.setOnClickListener {
-            startMainActivity()
+            startPvcActivity()
         }
 
         binding.imgPvp.setOnClickListener {
@@ -44,17 +47,15 @@ class ThirdActivity : AppCompatActivity() {
 
     }
 
-    private fun startMainActivity() {
-        val username = intent.getStringExtra("username")
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("username", username)
-        startActivity(intent)
+    private fun startPvcActivity() {
+        intentTo(PvcActivity::class.java) {
+                intent -> intent.putExtra("username", username)
+        }
     }
 
     private fun startPvpActivity() {
-        val username = intent.getStringExtra("username")
-        val intent = Intent(this, PvpActivity::class.java)
-        intent.putExtra("username", username)
-        startActivity(intent)
+        intentTo(PvpActivity::class.java) {
+                intent -> intent.putExtra("username", username)
+        }
     }
 }

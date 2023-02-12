@@ -1,16 +1,16 @@
-package com.example.binarsuit.fragments
+package com.example.binarsuit.landingpage.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.binarsuit.databinding.FragmentSecondBinding
+import com.example.binarsuit.databinding.FragmentLandingPageSecondBinding
 
-class SecondFragment : Fragment() {
+class SecondLandingPageFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
-    private val binding: FragmentSecondBinding
+    private var _binding: FragmentLandingPageSecondBinding? = null
+    private val binding: FragmentLandingPageSecondBinding
         get() = _binding!!
 
     override fun onCreateView(
@@ -18,12 +18,8 @@ class SecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentLandingPageSecondBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

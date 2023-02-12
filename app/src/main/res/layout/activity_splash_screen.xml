@@ -5,21 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.SplashScreen">
+    android:gravity="center"
+    tools:context=".splashscreen.SplashScreenActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_splash_screen_top"
         android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center"/>
+        android:layout_height="300dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_splash_screen_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/splash_screen2"
-        android:layout_gravity="center"/>
+        app:srcCompat="@drawable/splash_screen2" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

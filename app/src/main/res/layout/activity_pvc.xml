@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".game.PvcActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_pvc_1"
@@ -64,6 +64,8 @@
         android:id="@+id/img_pvc_restart"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
         android:src="@drawable/refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -72,6 +74,8 @@
         android:id="@+id/img_pvc_close"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/close" />

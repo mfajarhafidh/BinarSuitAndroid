@@ -1,27 +1,31 @@
-package com.example.binarsuit
+package com.example.binarsuit.game
 
-import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
-import com.example.binarsuit.activity.ThirdActivity
-import com.example.binarsuit.databinding.ActivityMainBinding
+import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.example.binarsuit.R
+import com.example.binarsuit.databinding.ActivityPvcBinding
+import com.example.binarsuit.databinding.LayoutDialogBinding
+import com.example.binarsuit.mainmenu.MainMenuActivity
+import com.example.binarsuit.utilities.intentTo
 import com.example.binarsuit.utilities.showToast
 
-class MainActivity : AppCompatActivity() {
+class PvcActivity : AppCompatActivity() {
 
-    private val binding: ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
+    private val binding: ActivityPvcBinding by lazy {
+        ActivityPvcBinding.inflate(layoutInflater)
+    }
+
+    private val username: String by lazy {
+        intent.getStringExtra("username") ?: "unknown"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        val username = intent.getStringExtra("username")
 
         binding.tvPvcPlayer.text = "$username"
 
@@ -35,32 +39,32 @@ class MainActivity : AppCompatActivity() {
                 1 -> {
                     binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
-                    textDraw()
-
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: DRAW")
                     showToast("CPU Memilih Batu")
+
+                    customDialog("SERI!")
                 }
                 2 -> {
                     binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
-
-                    textComWin()
 
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                     showToast("CPU Memilih Kertas")
+
+                    customDialog("CPU MENANG!")
                 }
                 else -> {
                     binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
 
-                    textPlayerWin()
-
                     Log.i("Main Activity", "Player: ROCK")
                     Log.i("Main Activity", "Computer: SCISSOR")
-                    Log.i("Main Activity", "Result: PLAYER WIN")
+                    Log.i("Main Activity", "Result: $username WIN")
                     showToast("CPU Memilih Gunting")
+
+                    customDialog("$username MENANG!")
                 }
             }
             notClickableBtn()
@@ -76,32 +80,32 @@ class MainActivity : AppCompatActivity() {
                 1 -> {
                     binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
-                    textPlayerWin()
-
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: ROCK")
-                    Log.i("Main Activity", "Result: PLAYER WIN")
+                    Log.i("Main Activity", "Result: $username WIN")
                     showToast("CPU Memilih Batu")
+
+                    customDialog("$username MENANG!")
                 }
                 2 -> {
                     binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
-
-                    textDraw()
 
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: PAPER")
                     Log.i("Main Activity", "Result: DRAW")
                     showToast("CPU Memilih Kertas")
+
+                    customDialog("SERI!")
                 }
                 else -> {
                     binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
-
-                    textComWin()
 
                     Log.i("Main Activity", "Player: PAPER")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                     showToast("CPU Memilih Gunting")
+
+                    customDialog("CPU MENANG!")
                 }
             }
             notClickableBtn()
@@ -117,52 +121,53 @@ class MainActivity : AppCompatActivity() {
                 1 -> {
                     binding.imgPvcComRock.setBackgroundColor(Color.CYAN)
 
-                    textComWin()
-
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: ROCK")
                     Log.i("Main Activity", "Result: COMPUTER WIN")
                     showToast("CPU Memilih Batu")
+
+                    customDialog("CPU MENANG!")
                 }
                 2 -> {
                     binding.imgPvcComPaper.setBackgroundColor(Color.CYAN)
 
-                    textPlayerWin()
-
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: PAPER")
-                    Log.i("Main Activity", "Result: PLAYER WIN")
+                    Log.i("Main Activity", "Result: $username WIN")
                     showToast("CPU Memilih Kertas")
+
+                    customDialog("$username MENANG!")
                 }
                 else -> {
                     binding.imgPvcComScissor.setBackgroundColor(Color.CYAN)
-
-                    textDraw()
 
                     Log.i("Main Activity", "Player: SCISSOR")
                     Log.i("Main Activity", "Computer: SCISSOR")
                     Log.i("Main Activity", "Result: DRAW")
                     showToast("CPU Memilih Gunting")
+
+                    customDialog("SERI!")
                 }
             }
             notClickableBtn()
         }
 
-        //Restart ImageView
-        restartApp()
+        //Restart Activity
+        binding.imgPvcRestart.setOnClickListener {
+            restartMainActivity()
+        }
 
-        //Closing Main Activity to Third Activity (Main Menu)
+        //Closing PvcActivity to MainMenuActivity
         binding.imgPvcClose.setOnClickListener {
             closeActivity()
         }
 
     }
 
-    //Restart function, finish the activity and startActivity again
-    private fun restartApp() {
-        binding.imgPvcRestart.setOnClickListener {
-            finish()
-            startActivity(intent)
+    //Restart function, restart PvcActivity
+    private fun restartMainActivity() {
+        intentTo(PvcActivity::class.java) { intent ->
+            intent.putExtra("username", username)
         }
     }
 
@@ -172,31 +177,33 @@ class MainActivity : AppCompatActivity() {
         binding.imgPvcPlayerScissor.isClickable = false
     }
 
-    private fun textPlayerWin() {
-        binding.tvPvcVs.text = "Player WIN"
-        binding.tvPvcVs.textSize = 20.0f
-        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
-        binding.tvPvcVs.setTextColor(Color.WHITE)
-    }
-
-    private fun textComWin() {
-        binding.tvPvcVs.text = "Computer WIN"
-        binding.tvPvcVs.textSize = 20.0f
-        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
-        binding.tvPvcVs.setTextColor(Color.WHITE)
-    }
-
-    private fun textDraw() {
-        binding.tvPvcVs.text = "DRAW"
-        binding.tvPvcVs.textSize = 20.0f
-        binding.tvPvcVs.setBackgroundColor(Color.GREEN)
-        binding.tvPvcVs.setTextColor(Color.WHITE)
-    }
-
     private fun closeActivity() {
-        val username = intent.getStringExtra("username")
-        val intent = Intent(this, ThirdActivity::class.java)
-        intent.putExtra("username", username)
-        startActivity(intent)
+        intentTo(MainMenuActivity::class.java) { intent ->
+            intent.putExtra("username", username)
+        }
+    }
+
+    private fun customDialog(message: String) {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setCancelable(false)
+
+        val view = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null, false)
+        val dialogBinding = LayoutDialogBinding.bind(view)
+        dialogBuilder.setView(view)
+
+        val dialog = dialogBuilder.create()
+
+        dialogBinding.tvResult.text = message
+
+        dialogBinding.btnRestart.setOnClickListener {
+            restartMainActivity()
+        }
+
+        dialogBinding.btnMenu.setOnClickListener {
+            closeActivity()
+        }
+
+        dialog.show()
     }
 }
