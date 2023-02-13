@@ -27,7 +27,7 @@ class PvcActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.tvPvcPlayer.text = "$username"
+        binding.tvPvcPlayer.text = username
 
         //Rock ImageView
         binding.imgPvcPlayerRock.setOnClickListener {

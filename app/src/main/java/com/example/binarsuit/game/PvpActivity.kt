@@ -27,7 +27,7 @@ class PvpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.tvPvpPlayer.text = "$username"
+        binding.tvPvpPlayer.text = username
 
         //Rock ImageView
         binding.imgPvpPlayerRock.setOnClickListener {

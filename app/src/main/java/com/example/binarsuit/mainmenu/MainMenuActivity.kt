@@ -1,6 +1,6 @@
 package com.example.binarsuit.mainmenu
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.binarsuit.game.PvcActivity
@@ -20,18 +20,17 @@ class MainMenuActivity : AppCompatActivity() {
         intent.getStringExtra("username") ?: "unknown"
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (username != null) {
-            val snackbar =
-                Snackbar.make(binding.root, "Selamat Datang $username", Snackbar.LENGTH_SHORT)
-            snackbar.setAction(R.string.close) {
-                snackbar.dismiss()
-            }
-            snackbar.show()
+        val snackbar =
+            Snackbar.make(binding.root, "Selamat Datang $username", Snackbar.LENGTH_SHORT)
+        snackbar.setAction(R.string.close) {
+            snackbar.dismiss()
         }
+        snackbar.show()
 
         binding.tvPvp.text = "$username vs Pemain"
         binding.tvPvc.text = "$username vs CPU"
